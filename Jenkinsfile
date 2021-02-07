@@ -68,14 +68,14 @@ pipeline {
 
             stage('Mess Detection Report') {
               steps {
-                sh 'vendor/bin/phpmd src xml phpmd.xml --reportfile build/logs/pmd.xml --exclude vendor/ --exclude autoload.php'
+                sh 'vendor/bin/phpmd src xml phpmd.xml --reportfile build/logs/pmd.xml --exclude vendor/ --exclude autoload.php || exit 0'
                 pmd canRunOnFailed: true, pattern: 'build/logs/pmd.xml'
               }
             }
 
             stage('CPD Report') {
               steps {
-                sh 'vendor/bin/phpcpd --log-pmd build/logs/pmd-cpd.xml --exclude vendor src'
+                sh 'vendor/bin/phpcpd --log-pmd build/logs/pmd-cpd.xml --exclude vendor src || exit 0'
                 dry canRunOnFailed: true, pattern: 'build/logs/pmd-cpd.xml'
               }
             }
