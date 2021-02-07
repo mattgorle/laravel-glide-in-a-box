@@ -58,13 +58,13 @@ pipeline {
               }
             }
 
-            stage('Checkstyle Report') {
-              steps {
-                sh 'mkdir -p build/logs'
-                sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src'
-                checkstyle pattern: 'build/logs/checkstyle.xml'
-              }
-            }
+//             stage('Checkstyle Report') {
+//               steps {
+//                 sh 'mkdir -p build/logs'
+//                 sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src'
+//                 checkstyle pattern: 'build/logs/checkstyle.xml'
+//               }
+//             }
 
             stage('Mess Detection Report') {
               steps {
