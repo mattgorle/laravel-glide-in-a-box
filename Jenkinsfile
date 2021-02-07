@@ -60,6 +60,7 @@ pipeline {
 
             stage('Checkstyle Report') {
               steps {
+                sh 'mkdir -p build/logs'
                 sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src || exit 0'
                 checkstyle pattern: 'build/logs/checkstyle.xml'
               }
@@ -87,6 +88,7 @@ pipeline {
 
             stage('Software metrics') {
               steps {
+                sh 'mkdir -p build/pdepend'
                 sh 'vendor/bin/pdepend --jdepend-xml=build/logs/jdepend.xml --jdepend-chart=build/pdepend/dependencies.svg --overview-pyramid=build/pdepend/overview-pyramid.svg --ignore=vendor src'
               }
             }
