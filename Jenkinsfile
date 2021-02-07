@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git(url: 'https://github.com/mattgorle/laravel-glide-in-a-box', branch: 'dev')
+        git(url: 'https://github.com/mattgorle/laravel-glide-in-a-box')
       }
     }
 
