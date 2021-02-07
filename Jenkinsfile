@@ -79,12 +79,12 @@ pipeline {
 //               }
 //             }
 
-            stage('CPD Report') {
-              steps {
-                sh 'vendor/bin/phpcpd --log-pmd build/logs/pmd-cpd.xml --exclude vendor src'
-                dry canRunOnFailed: true, pattern: 'build/logs/pmd-cpd.xml'
-              }
-            }
+//             stage('CPD Report') {
+//               steps {
+//                 sh 'vendor/bin/phpcpd --log-pmd build/logs/pmd-cpd.xml --exclude vendor src'
+//                 dry canRunOnFailed: true, pattern: 'build/logs/pmd-cpd.xml'
+//               }
+//             }
 
             stage('Lines of Code') {
               steps {
