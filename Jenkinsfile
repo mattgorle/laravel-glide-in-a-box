@@ -13,7 +13,7 @@ pipeline {
           agent {
             docker {
               image 'mattgorle/php73:latest'
-              args '-u jenkins:sudo'
+              args '-u root'
             }
 
           }
