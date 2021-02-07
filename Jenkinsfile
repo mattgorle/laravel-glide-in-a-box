@@ -44,7 +44,7 @@ pipeline {
   post {
     always {
       echo 'Fixing permissions of all generated files...'
-      sh 'chown -R jenkins:jenkins \$PWD'
+      sh 'chown -R jenkins:jenkins $WORKSPACE'
     }
   }
 }
