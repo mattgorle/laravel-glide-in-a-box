@@ -61,7 +61,7 @@ pipeline {
             stage('Checkstyle Report') {
               steps {
                 sh 'mkdir -p build/logs'
-                sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --runtime-set ignore_warnings_on_exit true --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src'
+                sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --runtime-set ignore_warnings_on_exit true --runtime-set ignore_errors_on_exit true --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src'
                 checkstyle pattern: 'build/logs/checkstyle.xml'
               }
             }
