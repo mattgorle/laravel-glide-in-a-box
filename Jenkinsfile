@@ -58,17 +58,17 @@ pipeline {
               }
             }
 
-//             stage('Checkstyle Report') {
-//               steps {
-//                 sh 'mkdir -p build/logs'
-//                 sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src'
-//                 checkstyle pattern: 'build/logs/checkstyle.xml'
-//               }
-//             }
+            stage('Checkstyle Report') {
+              steps {
+                sh 'mkdir -p build/logs'
+                sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --runtime-set ignore_warnings_on_exit true --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src'
+                checkstyle pattern: 'build/logs/checkstyle.xml'
+              }
+            }
 
             stage('Mess Detection Report') {
               steps {
-                sh 'vendor/bin/phpmd src xml phpmd.xml --reportfile build/logs/pmd.xml --exclude vendor/ --exclude autoload.php || exit 0'
+                sh 'vendor/bin/phpmd src xml phpmd.xml --reportfile build/logs/pmd.xml --ignore-violations-on-exit --exclude vendor/ --exclude autoload.php'
                 pmd canRunOnFailed: true, pattern: 'build/logs/pmd.xml'
               }
             }
