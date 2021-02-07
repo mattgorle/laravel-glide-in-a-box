@@ -13,7 +13,7 @@ pipeline {
           agent {
             docker {
               image 'allebb/phptestrunner-73:latest'
-              args '-u root:sudo'
+              args '-u jenkins:sudo'
             }
 
           }
