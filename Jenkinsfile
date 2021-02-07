@@ -53,7 +53,9 @@ pipeline {
             }
 
             stage("Publish Clover") {
-              step([$class: 'CloverPublisher', cloverReportDir: 'build/logs', cloverReportFileName: 'clover.xml'])
+              steps {
+                step([$class: 'CloverPublisher', cloverReportDir: 'build/logs', cloverReportFileName: 'clover.xml'])
+              }
             }
 
             stage('Checkstyle Report') {
