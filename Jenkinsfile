@@ -15,7 +15,7 @@ pipeline {
               image 'mattgorle/php73:latest'
               args '-u root'
             }
-
+          }
 
           stages {
             stage('PHPLint') {
