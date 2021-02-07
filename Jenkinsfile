@@ -24,6 +24,12 @@ pipeline {
               }
             }
 
+            stage('Create Directories') {
+              steps {
+                sh 'mkdir -p build/logs'
+              }
+            }
+
             stage('Composer') {
               steps {
                 sh 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer'
