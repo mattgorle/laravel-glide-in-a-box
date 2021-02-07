@@ -54,28 +54,28 @@ pipeline {
 
             stage("Publish Clover") {
               steps {
-                step([$class: 'CloverPublisher', cloverReportDir: 'build/logs', cloverReportFileName: 'clover.xml'])
+                step([$class: 'CloverPublisher', cloverReportDir: 'build', cloverReportFileName: 'clover.xml'])
               }
             }
 
             stage('Checkstyle Report') {
               steps {
                 sh 'mkdir -p build/logs'
-                sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src || exit 0'
+                sh 'vendor/bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=PSR2 --extensions=php,inc --ignore=autoload.php --ignore=vendor/ src'
                 checkstyle pattern: 'build/logs/checkstyle.xml'
               }
             }
 
             stage('Mess Detection Report') {
               steps {
-                sh 'vendor/bin/phpmd src xml phpmd.xml --reportfile build/logs/pmd.xml --exclude vendor/ --exclude autoload.php || exit 0'
+                sh 'vendor/bin/phpmd src xml phpmd.xml --reportfile build/logs/pmd.xml --exclude vendor/ --exclude autoload.php'
                 pmd canRunOnFailed: true, pattern: 'build/logs/pmd.xml'
               }
             }
 
             stage('CPD Report') {
               steps {
-                sh 'vendor/bin/phpcpd --log-pmd build/logs/pmd-cpd.xml --exclude vendor src || exit 0'
+                sh 'vendor/bin/phpcpd --log-pmd build/logs/pmd-cpd.xml --exclude vendor src'
                 dry canRunOnFailed: true, pattern: 'build/logs/pmd-cpd.xml'
               }
             }
