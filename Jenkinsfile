@@ -12,7 +12,7 @@ pipeline {
         stage('PHP 7.3') {
           agent {
             docker {
-              image 'mattgorle/php73:latest'
+              image 'mattgorle/php73-testbed:latest'
               args '-u root'
             }
           }
@@ -110,7 +110,7 @@ pipeline {
         stage('PHP 7.4') {
           agent {
             docker {
-              image 'mattgorle/php74:latest'
+              image 'mattgorle/php74-testbed:latest'
               args '-u root'
             }
 
@@ -152,7 +152,7 @@ stages {
         stage('PHP 8.0') {
           agent {
             docker {
-              image 'mattgorle/php80:latest'
+              image 'mattgorle/php80-testbed:latest'
               args '-u root'
             }
 
